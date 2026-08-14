@@ -1,0 +1,48 @@
+#include "push_swap.h"
+#include <stdio.h> // temporery
+
+void	list_print(t_linkedlist *list)
+{
+	t_node	*temp;
+
+	temp = list->head;
+	while (temp != NULL)
+	{
+		printf("%ld\n", temp->content); // temporario
+		temp = temp->next;
+	}
+}
+
+int	list_len(t_linkedlist *list)
+{
+	t_node	*temp;
+
+	int	size;
+
+	size = 0;
+	temp = list->head;
+	while (temp != NULL)
+	{
+		size++;
+		temp = temp->next;
+	}
+	return (size);
+}
+
+int	is_list_clean(t_linkedlist *list)
+{
+	int	size = list_len(list);
+	if (size)
+		return (0);
+	return (1);
+}
+
+int	is_list_one_node(t_linkedlist *list)
+{
+	t_node	*next;
+
+	next = list->tail->next;
+	if (next)
+		return (0);
+	return (1);
+}
