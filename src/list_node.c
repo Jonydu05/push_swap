@@ -47,7 +47,7 @@ t_node	*push_front(t_linkedlist *stack)
 	return (node);
 }
 
-void	pop_front(t_linkedlist *stack) // funcao passiva de segmentation fault
+void	pop_front(t_linkedlist *stack)
 {
 	t_node	*next;
 
