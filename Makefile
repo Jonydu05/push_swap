@@ -10,8 +10,8 @@ OPS		:=	$(SRC)/operations
 SRCS	:=	$(SRC)/main.c \
 			$(SRC)/list_node.c \
 			$(UTILS)/list_utils.c \
-			$(OPS)/pa.c \
-			$(OPS)/pb.c
+			$(OPS)/swap_stack.c \
+			$(OPS)/push_stack.c
 all: $(NAME)
 
 $(NAME): $(SRCS)

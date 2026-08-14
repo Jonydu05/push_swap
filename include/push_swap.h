@@ -107,5 +107,8 @@ int		is_list_one_node(t_linkedlist *list);
 
 int	pa(t_linkedlist *stack_a, t_linkedlist *stack_b);
 int	pb(t_linkedlist *stack_b, t_linkedlist *stack_a);
+int	sa(t_linkedlist *stack_a);
+int	sb(t_linkedlist *stack_b);
+int	ss(t_linkedlist *stack_a, t_linkedlist *stack_b);
 
 #endif
