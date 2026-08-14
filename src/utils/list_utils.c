@@ -41,7 +41,7 @@ int	is_list_one_node(t_linkedlist *list)
 {
 	t_node	*next;
 
-	next = list->tail->next;
+	next = list->head->next;
 	if (next)
 		return (0);
 	return (1);
