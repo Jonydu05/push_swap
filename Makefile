@@ -5,10 +5,13 @@ CFLAGS	:=	-Wall -Werror -Wextra -g
 INCLUDE	:=	include
 SRC		:=	src
 UTILS	:=	$(SRC)/utils
+OPS		:=	$(SRC)/operations
 
 SRCS	:=	$(SRC)/main.c \
 			$(SRC)/list_node.c \
-			$(UTILS)/list_utils.c
+			$(UTILS)/list_utils.c \
+			$(OPS)/pa.c \
+			$(OPS)/pb.c
 all: $(NAME)
 
 $(NAME): $(SRCS)
