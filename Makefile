@@ -1,27 +1,49 @@
-NAME	:=	push_swap
-CC		:=	cc
-CFLAGS	:=	-Wall -Werror -Wextra -g
+MAKEFLAGS := -silent
 
-INCLUDE	:=	include
-SRC		:=	src
-UTILS	:=	$(SRC)/utils
-OPS		:=	$(SRC)/operations
+LIBFT   := libft
+LIB     := $(LIBFT)/libft.a
+LDFLAGS := -L$(LIBFT) -lft
 
-SRCS	:=	$(SRC)/main.c \
-			$(SRC)/list_node.c \
-			$(UTILS)/list_utils.c \
-			$(OPS)/swap_stack.c \
-			$(OPS)/push_stack.c
+NAME    := push_swap
+CC      := cc
+CFLAGS  := -Wall -Werror -Wextra -g
+
+INCLUDE := -Iinclude -I$(LIBFT)
+SRC     := src
+UTILS   := $(SRC)/utils
+OPS     := $(SRC)/operations
+
+SRCS    := $(SRC)/main.c \
+           $(SRC)/list_node.c \
+           $(UTILS)/list_utils.c \
+           $(OPS)/swap_stack.c \
+           $(OPS)/push_stack.c
+
+OBJS    := $(SRCS:.c=.o)
+
 all: $(NAME)
 
-$(NAME): $(SRCS)
-	$(CC) $(CFLAGS) -I$(INCLUDE) $(SRCS) -o $(NAME)
+%.o: %.c
+	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
+
+$(LIB):
+	$(MAKE) -C $(LIBFT)
+
+$(NAME): $(LIB) $(OBJS)
+	printf "Program ready\n"
+	$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) -o $(NAME)
 
 clean:
-	rm -rf $(NAME)
+	printf "Clean activated\n"
+	$(MAKE) -C $(LIBFT) clean
+	rm -f $(OBJS)
 
 fclean: clean
+	printf "Fclean activated\n"
+	$(MAKE) -C $(LIBFT) fclean
+	rm -f $(NAME)
 
 re: fclean all
+	$(MAKE) -C $(LIBFT) re
 
 .PHONY: all, fclean, clean, re
