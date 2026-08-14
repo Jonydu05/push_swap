@@ -4,9 +4,11 @@ CFLAGS	:=	-Wall -Werror -Wextra -g
 
 INCLUDE	:=	include
 SRC		:=	src
-SRCS	:=	$(SRC)/main.c \
-			$(SRC)/teste/teste.c # Apenas para teste de include
+UTILS	:=	$(SRC)/utils
 
+SRCS	:=	$(SRC)/main.c \
+			$(SRC)/list_node.c \
+			$(UTILS)/list_utils.c
 all: $(NAME)
 
 $(NAME): $(SRCS)
