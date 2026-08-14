@@ -3,6 +3,7 @@
 
 // Unistd.h included functions read, write
 # include <unistd.h>
+# include "../libft/libft.h"
 
 // Stdlib.h included functions malloc, free and exit
 # include <stdlib.h>
@@ -28,15 +29,15 @@ typedef struct s_linked
 *
 * @return Void
 */
-
 void			linked_init(t_linkedlist *list);
+
 /**
 * @brief This function make a safe initialize node type
 *
 * @return Return pointer of node allocated
 */
-
 t_node			*node_init(void);
+
 /**
 * @brief This function push a new node to first position in a stack structury
 *
