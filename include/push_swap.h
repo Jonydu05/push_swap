@@ -103,4 +103,9 @@ int		is_list_clean(t_linkedlist *list);
 */
 int		is_list_one_node(t_linkedlist *list);
 
+// Operations to use stack
+
+int	pa(t_linkedlist *stack_a, t_linkedlist *stack_b);
+int	pb(t_linkedlist *stack_b, t_linkedlist *stack_a);
+
 #endif
