@@ -18,7 +18,8 @@ SRCS    := $(SRC)/main.c \
            $(UTILS)/list_utils.c \
            $(OPS)/swap_stack.c \
            $(OPS)/push_stack.c \
-           $(OPS)/rotate_stack.c
+           $(OPS)/rotate_stack.c \
+           $(OPS)/reverse_rotate_stack.c
 
 OBJS    := $(SRCS:.c=.o)
 

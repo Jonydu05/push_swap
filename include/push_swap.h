@@ -114,5 +114,8 @@ int	ss(t_linkedlist *stack_a, t_linkedlist *stack_b);
 int	ra(t_linkedlist *stack_a);
 int	rb(t_linkedlist *stack_a);
 int	rr(t_linkedlist *stack_a, t_linkedlist *stack_b);
+int	rra(t_linkedlist *stack_a);
+int	rrb(t_linkedlist *stack_b);
+int	rrr(t_linkedlist *stack_a, t_linkedlist *stack_b);
 
 #endif
