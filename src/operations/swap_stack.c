@@ -16,16 +16,12 @@ static int	swap_stack(t_linkedlist *stack)
 
 int	sb(t_linkedlist *stack_b)
 {
-	if (!swap_stack(stack_b))
-		return (0);
-	return (1);
+	return (swap_stack(stack_b));
 }
 
 int	sa(t_linkedlist *stack_a)
 {
-	if (!swap_stack(stack_a))
-		return (0);
-	return (1);
+	return (swap_stack(stack_a));
 }
 
 int	ss(t_linkedlist *stack_a, t_linkedlist *stack_b)

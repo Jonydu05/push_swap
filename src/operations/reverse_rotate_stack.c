@@ -20,21 +20,17 @@ static int	reverse_rotate_stack(t_linkedlist *stack)
 
 int	rra(t_linkedlist *stack_a)
 {
-	if (!reverse_rotate_stack(stack_a))
-		return (0);
-	return (1);
+	return (reverse_rotate_stack(stack_a));
 }
 
 int	rrb(t_linkedlist *stack_b)
 {
-	if (!reverse_rotate_stack(stack_b))
-		return (0);
-	return (1);
+	return (reverse_rotate_stack(stack_b));
 }
 
 int	rrr(t_linkedlist *stack_a, t_linkedlist *stack_b)
 {
-	if (!reverse_rotate_stack(stack_a) || !reverse_rotate_stack(stack_b))
+	if (!rra(stack_a) || !rrb(stack_b))
 		return (0);
 	return (1);
 }
