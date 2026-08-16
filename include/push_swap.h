@@ -104,6 +104,8 @@ int		is_list_clean(t_linkedlist *list);
 */
 int		is_list_one_node(t_linkedlist *list);
 
+t_node	*get_at(t_linkedlist *list, size_t index);
+
 // Operations to use stack
 
 int	pa(t_linkedlist *stack_a, t_linkedlist *stack_b);
@@ -117,5 +119,9 @@ int	rr(t_linkedlist *stack_a, t_linkedlist *stack_b);
 int	rra(t_linkedlist *stack_a);
 int	rrb(t_linkedlist *stack_b);
 int	rrr(t_linkedlist *stack_a, t_linkedlist *stack_b);
+
+// selection_sort
+
+void	selection_sort(t_linkedlist *stack);
 
 #endif
