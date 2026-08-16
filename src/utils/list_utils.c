@@ -46,3 +46,18 @@ int	is_list_one_node(t_linkedlist *list)
 		return (0);
 	return (1);
 }
+
+t_node	*get_at(t_linkedlist *list, size_t index)
+{
+	t_node	*node;
+	size_t	i;
+
+	node = list->head;
+	i = 0;
+	while (i < index && node != NULL)
+	{
+		node = node->next;
+		i++;
+	}
+	return (node);
+}
