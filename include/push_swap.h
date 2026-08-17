@@ -168,10 +168,6 @@ int	rra(t_linkedlist *stack_a);
 int	rrb(t_linkedlist *stack_b);
 int	rrr(t_linkedlist *stack_a, t_linkedlist *stack_b);
 
-// dedicate_sort
-
-void	dedicate_sort(t_linkedlist *stack_a, size_t size);
-
 // selection_sort
 
 void	selection_sort(t_linkedlist *stack_a, t_linkedlist *stack_b);
