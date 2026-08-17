@@ -1,25 +1,18 @@
 #include "push_swap.h"
 #include <stdio.h>
 
-int	main(int argc, char **argv)
+int	main(int argc, char const *argv[])
 {
-	(void)argc;
-	(void)argv;
+	t_linkedlist	*stack_a;
+	t_linkedlist	*stack_b;
 
-	t_linkedlist	*stack;
-
-	stack = malloc(sizeof(t_linkedlist));
-	if (!stack)
+	stack_a = malloc(sizeof(t_linkedlist));
+	stack_b = malloc(sizeof(t_linkedlist));
+	if (!stack_a && !stack_b)
 		return (1);
-	linked_init(stack);
-	add_content(push_front(stack), 1); // tail: 0x1
-	add_content(push_front(stack), 2); // middle: 0x2
-	add_content(push_front(stack), 3); // head: 0x3
-	list_print(stack);
-	pop_front(stack); // head: 0x2
-	list_print(stack);
-	// Esse codigo de teste causa naturalmente 2 leaks propositas, por conta
-	// Da nao liberacao dos dois nodes via pop
-	free(stack);
+	linked_init(stack_a);
+	handle_inputs(argc, argv, stack_a);
+	free(stack_a);
+	free(stack_b);
 	return (0);
 }
