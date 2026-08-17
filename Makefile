@@ -12,6 +12,7 @@ INCLUDE := -Iinclude -I$(LIBFT)
 SRC     := src
 UTILS   := $(SRC)/utils
 OPS     := $(SRC)/operations
+ALGO	:= $(SRC)/algorithms
 
 SRCS    := $(SRC)/main.c \
            $(SRC)/list_node.c \
@@ -19,7 +20,8 @@ SRCS    := $(SRC)/main.c \
            $(OPS)/swap_stack.c \
            $(OPS)/push_stack.c \
            $(OPS)/rotate_stack.c \
-           $(OPS)/reverse_rotate_stack.c
+           $(OPS)/reverse_rotate_stack.c \
+		   $(ALGO)/selection_sort.c
 
 OBJS    := $(SRCS:.c=.o)
 

@@ -151,7 +151,11 @@ unsigned int init_flags(unsigned int FLAG, char *flag);
 
 void handle_inputs(int argc, char const *argv[], t_linkedlist *stack);
 
+t_node	*get_by_content(t_linkedlist *list, long content);
+t_node	*get_at(t_linkedlist *list, size_t index);
+
 // Operations to use stack
+
 int	pa(t_linkedlist *stack_a, t_linkedlist *stack_b);
 int	pb(t_linkedlist *stack_b, t_linkedlist *stack_a);
 int	sa(t_linkedlist *stack_a);
@@ -163,5 +167,13 @@ int	rr(t_linkedlist *stack_a, t_linkedlist *stack_b);
 int	rra(t_linkedlist *stack_a);
 int	rrb(t_linkedlist *stack_b);
 int	rrr(t_linkedlist *stack_a, t_linkedlist *stack_b);
+
+// dedicate_sort
+
+void	dedicate_sort(t_linkedlist *stack_a, size_t size);
+
+// selection_sort
+
+void	selection_sort(t_linkedlist *stack_a, t_linkedlist *stack_b);
 
 #endif
