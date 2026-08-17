@@ -40,11 +40,18 @@ void	selection_sort(t_linkedlist *stack_a, t_linkedlist *stack_b)
 	node = stack_a->head;
 	while (node != NULL)
 	{
-		if (stack_a->head->content > stack_a->head->next->content)
-		{
-			sa(stack_a);
-			break ;
-		}
+		// !!! ATENÇÃO Apresentado falhas de otimização !!!!
+
+		//if (stack_a->head->next != NULL && stack_a->head->content > stack_a->head->next->content)
+		//{ Apresentando
+		//	sa(stack_a);
+		//	break ;
+		//}
+		//if (stack_a->head->content > stack_a->head->next->content)
+		//{
+		//	sa(stack_a);
+		//	break ;
+		//}
 		min_content = node->content;
 		j_node = node;
 		while (j_node != NULL)
