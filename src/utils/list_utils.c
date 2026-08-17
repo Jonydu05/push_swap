@@ -1,7 +1,7 @@
 #include "push_swap.h"
 #include <stdio.h> // temporery
 
-void	list_print(t_linkedlist *list)
+void	list_print(t_linkedlist *list) // funcao temporaria
 {
 	t_node	*temp;
 
@@ -70,4 +70,19 @@ t_node	*get_by_content(t_linkedlist *list, long content)
 	while (node != NULL && node->content != content)
 		node = node->next;
 	return (node);
+}
+
+void	clear_stack(t_linkedlist *stack)
+{
+	t_node	*head;
+	t_node	*next;
+
+	head = stack->head;
+	while (head != NULL)
+	{
+		next = head->next;
+		free(head);
+		head = next;
+	}
+	free(stack);
 }
