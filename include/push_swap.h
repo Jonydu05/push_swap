@@ -117,35 +117,35 @@ int		is_list_one_node(t_linkedlist *list);
 
 /**
  * @brief This function exit the program with a error message
- * 
+ *
  * @param exit_code The exit code is a integer value to identify the error
- * 
+ *
  * @brief 0 - Success;
  * @brief 1 - Invalid input list;
  * @brief 2 - Invalid input flags;
  * @brief 3 - Unknown error;
  * @
- * 
+ *
  * @return Void
  */
 void exit_program(int exit_code);
 
 /**
  * @brief This function just verifies if the argument is some flag
- * 
+ *
  * @param flag The string to be compared
- * 
+ *
  * @return TRUE if is some flag or FALSE if its not.
  */
 int	is_flag(char *flag);
 
 /**
  * @brief This function initialize the flags
- * 
+ *
  * @param FLAG the byte where the flags are stored (using bitwise for efficiency)
  * @param flag the string to compare
- * 
- * @return Return the FLAG updated with the new flags 
+ *
+ * @return Return the FLAG updated with the new flags
  */
 unsigned int init_flags(unsigned int FLAG, char *flag);
 

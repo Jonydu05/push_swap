@@ -13,15 +13,19 @@ SRC     := src
 UTILS   := $(SRC)/utils
 OPS     := $(SRC)/operations
 ALGO	:= $(SRC)/algorithms
+PARSER	:= $(SRC)/parser
 
 SRCS    := $(SRC)/main.c \
            $(SRC)/list_node.c \
            $(UTILS)/list_utils.c \
+           $(UTILS)/error_handle.c \
            $(OPS)/swap_stack.c \
            $(OPS)/push_stack.c \
            $(OPS)/rotate_stack.c \
            $(OPS)/reverse_rotate_stack.c \
-		   $(ALGO)/selection_sort.c
+		   $(ALGO)/selection_sort.c \
+		   $(PARSER)/flags.c \
+		   $(PARSER)/inputs.c
 
 OBJS    := $(SRCS:.c=.o)
 
