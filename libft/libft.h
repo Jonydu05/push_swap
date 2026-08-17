@@ -59,6 +59,7 @@ int		ft_lstsize(t_list *lst);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 int		ft_tolower(int c);
 int		ft_toupper(int c);
+long	ft_atol(char const *str);
 size_t	ft_strlcpy(char *dst, char const *src, size_t size);
 size_t	ft_strlcat(char *dst, char const *src, size_t size);
 t_list	*ft_lstnew(void *content);
