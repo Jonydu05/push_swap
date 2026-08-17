@@ -1,11 +1,12 @@
-#include "include/push_swap.h"
+#include "push_swap.h"
 
 void handle_inputs(int argc, char const *argv[], t_linkedlist *stack)
 {
 	unsigned int ACTIVE_FLAGS = ADAPTIVE;
-	char	**inputs;
+	char	*inputs; // alteracao de matriz para um vector(string comum)
 	int		i;
 	int		total_len;
+	(void)stack;
 
 	if (argc < 2)
 		return (exit_program(1));
@@ -13,9 +14,9 @@ void handle_inputs(int argc, char const *argv[], t_linkedlist *stack)
 	total_len = 0;
 	while (argc - 1 < i)
 	{
-		if (is_flag(argv[i]))
+		if (is_flag(((char *)argv[i]))) // permitir o acesso valido da substring
 		{
-			ACTIVE_FLAGS = init_flags(ACTIVE_FLAGS, argv[i]);
+			ACTIVE_FLAGS = init_flags(ACTIVE_FLAGS, ((char *)argv[i])); // permitir o acesso valido subtring
 			continue ;
 		}
 		total_len += ft_strlen(argv[i]);
@@ -27,7 +28,7 @@ void handle_inputs(int argc, char const *argv[], t_linkedlist *stack)
 	i = 1;
 	while (argc - 1 < i)
 	{
-		if (is_flag(argv[i]))
+		if (is_flag(((char *)argv[i]))) // permitir o acesso valido da substring
 			continue ;
 		ft_strlcat(inputs, argv[i], total_len);
 		i++;
@@ -35,7 +36,7 @@ void handle_inputs(int argc, char const *argv[], t_linkedlist *stack)
 	// inputs preenchido;
 }
 
-/* 
+/*
 1 2 3 4 5 123
 "1 2 43 5 34"
 

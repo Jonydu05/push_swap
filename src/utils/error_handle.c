@@ -1,9 +1,9 @@
-#include "include/push_swap.h"
+#include "push_swap.h"
 
 void exit_program(int exit_code)
 {
 	// TODO: create clear_stacks();
-	clear_stacks();
+	//clear_stacks();
 	if (exit_code == 0)
 		exit(0);
 	if (exit_code == 1)

@@ -1,4 +1,4 @@
-#include "include/push_swap.h"
+#include "push_swap.h"
 
 int	is_flag(char *flag)
 {
@@ -28,7 +28,7 @@ unsigned int init_flags(unsigned int FLAG, char *flag)
 	if (!ft_strncmp(flag, "--adaptive", ft_strlen(flag)))
 		FLAG |= ADAPTIVE;
 	if (!ft_strncmp(flag, "--bench", ft_strlen(flag)))
-		FLAG |= BENCH;	
+		FLAG |= BENCH;
 	algorithm = FLAG & (SIMPLE | MEDIUM | COMPLEX | ADAPTIVE);
 	if (algorithm && algorithm - 1)
 		exit_program(2);
