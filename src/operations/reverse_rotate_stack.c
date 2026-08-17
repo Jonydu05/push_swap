@@ -20,11 +20,13 @@ static int	reverse_rotate_stack(t_linkedlist *stack)
 
 int	rra(t_linkedlist *stack_a)
 {
+	ft_putstr_fd("rra\n", 1);
 	return (reverse_rotate_stack(stack_a));
 }
 
 int	rrb(t_linkedlist *stack_b)
 {
+	ft_putstr_fd("rrb\n", 1);
 	return (reverse_rotate_stack(stack_b));
 }
 

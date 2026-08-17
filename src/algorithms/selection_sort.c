@@ -1,41 +1,67 @@
 #include "push_swap.h"
 
-static void	swap(t_linkedlist *stack, size_t i, size_t min_index)
-{
-	long	aux;
-	t_node	*part1;
-	t_node	*part2;
+//void	selection_sort(t_linkedlist *stack_a, t_linkedlist *stack_b)
+//{
+//	long	min_content;
+//	t_node	*node;
+//	t_node	*j_node;
+//
+//	node = stack_a->head;
+//	while (node != NULL)
+//	{
+//		min_content = node->content;
+//		j_node = node;
+//		while (j_node != NULL)
+//		{
+//			if (j_node->content < get_by_content(stack_a, min_content)->content)
+//				min_content = j_node->content;
+//			j_node = j_node->next;
+//		}
+//		while (stack_a->head->content != get_by_content(stack_a, min_content)->content)
+//			ra(stack_a);
+//		node = node->next;
+//		pb(stack_b, stack_a);
+//	}
+//	// desempilhar
+//	node = stack_b->head;
+//	while (node != NULL)
+//	{
+//		node = node->next;
+//		pa(stack_a, stack_b);
+//	}
+//}
 
-	part1 = get_at(stack, i);
-	part2 = get_at(stack, min_index);
-	aux = part1->content;
-	part1->content = part2->content;
-	part2->content = aux;
-}
-
-void	selection_sort(t_linkedlist *stack)
+void	selection_sort(t_linkedlist *stack_a, t_linkedlist *stack_b)
 {
-	size_t	i;
-	size_t	n;
-	size_t	j;
-	size_t	min_index;
+	long	min_content;
 	t_node	*node;
+	t_node	*j_node;
 
-	n = list_len(stack);
-	i = 0;
-	node = stack->head;
-	while (i < n - 1)
+	node = stack_a->head;
+	while (node != NULL)
 	{
-		j = i;
-		min_index = j;
-		while (j < n)
+		if (stack_a->head->content > stack_a->head->next->content)
 		{
-			if (get_at(stack, j)->content < get_at(stack, min_index)->content)
-				min_index = j;
-			j++;
-			if (get_at(stack, i) > get_at(stack, min_index))
-				swap(stack, i, min_index);
+			sa(stack_a);
+			break ;
 		}
-		i++;
+		min_content = node->content;
+		j_node = node;
+		while (j_node != NULL)
+		{
+			if (j_node->content < get_by_content(stack_a, min_content)->content)
+				min_content = j_node->content;
+			j_node = j_node->next;
+		}
+		while (stack_a->head->content != get_by_content(stack_a, min_content)->content)
+			ra(stack_a);
+		node = node->next;
+		pb(stack_b, stack_a);
+	}
+	node = stack_b->head;
+	while (node != NULL)
+	{
+		node = node->next;
+		pa(stack_a, stack_b);
 	}
 }

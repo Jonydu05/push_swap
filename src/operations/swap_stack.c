@@ -16,11 +16,13 @@ static int	swap_stack(t_linkedlist *stack)
 
 int	sb(t_linkedlist *stack_b)
 {
+	ft_putstr_fd("sb\n", 1);
 	return (swap_stack(stack_b));
 }
 
 int	sa(t_linkedlist *stack_a)
 {
+	ft_putstr_fd("sa\n", 1);
 	return (swap_stack(stack_a));
 }
 

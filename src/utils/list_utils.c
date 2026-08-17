@@ -61,3 +61,13 @@ t_node	*get_at(t_linkedlist *list, size_t index)
 	}
 	return (node);
 }
+
+t_node	*get_by_content(t_linkedlist *list, long content)
+{
+	t_node	*node;
+
+	node = list->head;
+	while (node != NULL && node->content != content)
+		node = node->next;
+	return (node);
+}
