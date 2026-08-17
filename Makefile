@@ -21,7 +21,6 @@ SRCS    := $(SRC)/main.c \
            $(OPS)/push_stack.c \
            $(OPS)/rotate_stack.c \
            $(OPS)/reverse_rotate_stack.c \
-		   $(ALGO)/dedicate_sort.c \
 		   $(ALGO)/selection_sort.c
 
 OBJS    := $(SRCS:.c=.o)
