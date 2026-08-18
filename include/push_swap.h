@@ -12,11 +12,12 @@
 # define FALSE 0
 
 enum e_flags {
-	ADAPTIVE = 0,
+	NONE = 0,
 	SIMPLE = 1 << 0,
 	MEDIUM = 1 << 1,
 	COMPLEX = 1 << 2,
-	BENCH = 1 << 3,
+	ADAPTIVE = 1 << 3,
+	BENCH = 1 << 4,
 };
 
 typedef struct s_node
@@ -150,6 +151,12 @@ int	is_flag(char *flag);
 unsigned int init_flags(unsigned int FLAG, char *flag);
 
 void handle_inputs(int argc, char const *argv[], t_linkedlist *stack);
+
+
+/**
+ * @brief Testing purpouses ONLY - delete when completed
+ */
+void	print_flags(unsigned FLAG);
 
 t_node	*get_by_content(t_linkedlist *list, long content);
 t_node	*get_at(t_linkedlist *list, size_t index);
