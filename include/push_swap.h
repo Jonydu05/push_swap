@@ -161,6 +161,8 @@ void	print_flags(unsigned FLAG);
 t_node	*get_by_content(t_linkedlist *list, long content);
 t_node	*get_at(t_linkedlist *list, size_t index);
 
+void	clear_stack(t_linkedlist *stack);
+
 // Operations to use stack
 
 int	pa(t_linkedlist *stack_a, t_linkedlist *stack_b);
@@ -174,10 +176,6 @@ int	rr(t_linkedlist *stack_a, t_linkedlist *stack_b);
 int	rra(t_linkedlist *stack_a);
 int	rrb(t_linkedlist *stack_b);
 int	rrr(t_linkedlist *stack_a, t_linkedlist *stack_b);
-
-// dedicate_sort
-
-void	dedicate_sort(t_linkedlist *stack_a, size_t size);
 
 // selection_sort
 
