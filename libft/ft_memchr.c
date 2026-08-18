@@ -24,7 +24,7 @@ void	*ft_memchr(const void *mem, int ch, size_t count)
 	while (i < count)
 	{
 		if (chr == ptr[i])
-			return ((void *)&mem[i]);
+			return ((void *)&ptr[i]);
 		i++;
 	}
 	return (NULL);
