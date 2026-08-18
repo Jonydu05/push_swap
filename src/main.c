@@ -3,16 +3,10 @@
 
 int	main(int argc, char const *argv[])
 {
-	t_linkedlist	*stack_a;
-	t_linkedlist	*stack_b;
+	t_conf	*config;
 
-	stack_a = malloc(sizeof(t_linkedlist));
-	stack_b = malloc(sizeof(t_linkedlist));
-	if (!stack_a && !stack_b)
-		return (1);
-	linked_init(stack_a);
-	handle_inputs(argc, argv, stack_a);
-	free(stack_a);
-	free(stack_b);
+	config = create_config();
+	handle_inputs(argc, argv, config);
+	exit_program(0, config);
 	return (0);
 }

@@ -32,6 +32,14 @@ typedef struct s_linked
 	t_node	*tail;
 }	t_linkedlist;
 
+typedef struct s_config
+{
+	t_linkedlist	*stack_a;
+	t_linkedlist	*stack_b;
+} t_conf;
+
+t_conf	*create_config(void);
+
 // Functions of list_node.c
 
 /**
@@ -129,7 +137,7 @@ int		is_list_one_node(t_linkedlist *list);
  *
  * @return Void
  */
-void exit_program(int exit_code);
+void exit_program(int exit_code, t_conf *config);
 
 /**
  * @brief This function just verifies if the argument is some flag
@@ -148,9 +156,9 @@ int	is_flag(char *flag);
  *
  * @return Return the FLAG updated with the new flags
  */
-unsigned int init_flags(unsigned int FLAG, char *flag);
+unsigned int init_flags(unsigned int FLAG, char *flag, t_conf *conf);
 
-void handle_inputs(int argc, char const *argv[], t_linkedlist *stack);
+void handle_inputs(int argc, char const *argv[], t_conf *config);
 
 
 /**

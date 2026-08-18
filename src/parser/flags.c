@@ -15,7 +15,7 @@ int	is_flag(char *flag)
 	return (FALSE);
 }
 
-unsigned int init_flags(unsigned int FLAG, char *flag)
+unsigned int init_flags(unsigned int FLAG, char *flag, t_conf *conf)
 {
 	unsigned int algorithm;
 
@@ -31,6 +31,6 @@ unsigned int init_flags(unsigned int FLAG, char *flag)
 		FLAG |= BENCH;
 	algorithm = FLAG & (SIMPLE | MEDIUM | COMPLEX | ADAPTIVE);
 	if (algorithm & (algorithm - 1))
-		exit_program(2);
+		exit_program(2, conf);
 	return FLAG;
 }

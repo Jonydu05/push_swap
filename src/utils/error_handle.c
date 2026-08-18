@@ -1,9 +1,9 @@
 #include "push_swap.h"
 
-void exit_program(int exit_code)
+void exit_program(int exit_code, t_conf *config)
 {
-	// TODO: create clear_stacks();
-	//clear_stacks();
+	clear_stack(config->stack_a);
+	clear_stack(config->stack_b);
 	if (exit_code == 0)
 		exit(0);
 	if (exit_code == 1)
