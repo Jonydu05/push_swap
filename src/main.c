@@ -5,8 +5,8 @@ int	main(int argc, char const *argv[])
 {
 	t_conf	*config;
 
-	config = create_config();
-	handle_inputs(argc, argv, config);
+	config = create_config(argc, argv);
+	handle_inputs(config);
 	exit_program(0, config);
 	return (0);
 }

@@ -36,9 +36,11 @@ typedef struct s_config
 {
 	t_linkedlist	*stack_a;
 	t_linkedlist	*stack_b;
+	int				argc;
+	const char		**argv;
 } t_conf;
 
-t_conf	*create_config(void);
+t_conf	*create_config(int argc, const char **argv);
 
 // Functions of list_node.c
 
@@ -139,6 +141,8 @@ int		is_list_one_node(t_linkedlist *list);
  */
 void exit_program(int exit_code, t_conf *config);
 
+// flags.c
+
 /**
  * @brief This function just verifies if the argument is some flag
  *
@@ -158,13 +162,13 @@ int	is_flag(char *flag);
  */
 unsigned int init_flags(unsigned int FLAG, char *flag, t_conf *conf);
 
-void handle_inputs(int argc, char const *argv[], t_conf *config);
+// inputs.c
 
-
-/**
- * @brief Testing purpouses ONLY - delete when completed
- */
-void	print_flags(unsigned FLAG);
+void	clean_exit(char **numbers, char *inputs);
+int		handle_flags(unsigned int FLAG, t_conf *config);
+char	*cat_inputs(int total, t_conf *config);
+char	**parse_numbers(char *inputs, t_conf *config);
+void	handle_inputs(t_conf *config);
 
 t_node	*get_by_content(t_linkedlist *list, long content);
 t_node	*get_at(t_linkedlist *list, size_t index);

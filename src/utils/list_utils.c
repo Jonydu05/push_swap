@@ -87,7 +87,7 @@ void	clear_stack(t_linkedlist *stack)
 	free(stack);
 }
 
-t_conf	*create_config(void)
+t_conf	*create_config(int argc, const char **argv)
 {
 	t_conf			*config;
 	t_linkedlist	*stack_a;
@@ -95,7 +95,7 @@ t_conf	*create_config(void)
 	
 	stack_a = malloc(sizeof(t_linkedlist));
 	stack_b = malloc(sizeof(t_linkedlist));
-	if (!stack_a && !stack_b)
+	if (!stack_a || !stack_b)
 		return (NULL);
 	linked_init(stack_a);
 	linked_init(stack_b);
@@ -104,5 +104,7 @@ t_conf	*create_config(void)
 		return (NULL);
 	config->stack_a = stack_a;
 	config->stack_b = stack_b;
+	config->argc = argc;
+	config->argv = argv;
 	return (config);
 }

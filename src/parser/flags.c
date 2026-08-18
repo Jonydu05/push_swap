@@ -2,15 +2,7 @@
 
 int	is_flag(char *flag)
 {
-	if (!ft_strncmp(flag, "--simple", 9))
-		return (TRUE);
-	if (!ft_strncmp(flag, "--medium", 9))
-		return (TRUE);
-	if (!ft_strncmp(flag, "--complex", 10))
-		return (TRUE);
-	if (!ft_strncmp(flag, "--adaptive", 11))
-		return (TRUE);
-	if (!ft_strncmp(flag, "--bench", 8))
+	if (flag[0] == '-' && flag[1] == '-')
 		return (TRUE);
 	return (FALSE);
 }
@@ -21,14 +13,16 @@ unsigned int init_flags(unsigned int FLAG, char *flag, t_conf *conf)
 
 	if (!ft_strncmp(flag, "--simple", 9))
 		FLAG |= SIMPLE;
-	if (!ft_strncmp(flag, "--medium", 9))
+	else if (!ft_strncmp(flag, "--medium", 9))
 		FLAG |= MEDIUM;
-	if (!ft_strncmp(flag, "--complex", 10))
+	else if (!ft_strncmp(flag, "--complex", 10))
 		FLAG |= COMPLEX;
-	if (!ft_strncmp(flag, "--adaptive", 11))
+	else if (!ft_strncmp(flag, "--adaptive", 11))
 		FLAG |= ADAPTIVE;
-	if (!ft_strncmp(flag, "--bench", 8))
+	else if (!ft_strncmp(flag, "--bench", 8))
 		FLAG |= BENCH;
+	else
+		exit_program(2, conf);
 	algorithm = FLAG & (SIMPLE | MEDIUM | COMPLEX | ADAPTIVE);
 	if (algorithm & (algorithm - 1))
 		exit_program(2, conf);
