@@ -10,7 +10,7 @@ static int	is_sorted(t_linkedlist *stack)
 	current = stack->head;
 	while (current->next)
 	{
-		if (current->content > current->next->content)
+		if (current->index > current->next->index)
 			return (FALSE);
 		current = current->next;
 	}
@@ -21,39 +21,22 @@ static void	index_stack(t_linkedlist *stack_a)
 {
 	t_node	*curr;
 	t_node	*comp;
-	int		*indices;
-	int		size;
-	int		i;
+	int		rank;
 
-	size = list_len(stack_a);
-	indices = ft_calloc(size, sizeof(int));
-	if (!indices)
-		return ;
 	curr = stack_a->head;
-	i = 0;
 	while (curr)
 	{
+		rank = 0;
 		comp = stack_a->head;
 		while (comp)
 		{
 			if (comp->content < curr->content)
-				indices[i]++;
+				rank++;
 			comp = comp->next;
 		}
+		curr->index = rank;
 		curr = curr->next;
-		i++;
 	}
-	curr = stack_a->head;
-	i = 0;
-	while (curr)
-	{
-		printf("Value: %ld\n", curr->content); // view
-		curr->content = indices[i];
-		printf("Index: %ld\n", curr->content);
-		curr = curr->next;
-		i++;
-	}
-	free(indices);
 }
 
 static int	get_max_bits(int size)
@@ -74,6 +57,8 @@ void	radix_sort(t_linkedlist *stack_a, t_linkedlist *stack_b, t_ops *ops)
 	int	i;
 
 	index_stack(stack_a);
+	if (is_sorted(stack_a))
+		return ;
 	size = list_len(stack_a);
 	max_bits = get_max_bits(size);
 	bit = 0;
@@ -82,7 +67,7 @@ void	radix_sort(t_linkedlist *stack_a, t_linkedlist *stack_b, t_ops *ops)
 		i = 0;
 		while (i < size)
 		{
-			if (((stack_a->head->content >> bit) & 1) == 1)
+			if (((stack_a->head->index >> bit) & 1) == 1)
 				ra(stack_a, ops);
 			else
 				pb(stack_b, stack_a, ops);
