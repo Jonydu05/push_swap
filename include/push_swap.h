@@ -39,6 +39,7 @@ typedef struct s_ops
 typedef struct s_node
 {
 	long			content;
+	int				index;
 	struct s_node	*next;
 }	t_node;
 

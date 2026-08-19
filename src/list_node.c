@@ -8,6 +8,7 @@ t_node	*node_init(void)
 	if (!node)
 		return (NULL);
 	node->content = 0;
+	node->index = -1;
 	node->next = NULL;
 	return (node);
 }
