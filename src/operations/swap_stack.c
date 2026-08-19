@@ -2,15 +2,22 @@
 
 static int	swap_stack(t_linkedlist *stack)
 {
-	long	temp;
+	long	temp_content;
+	int		temp_index;
 	t_node	*next;
 
 	if (is_list_clean(stack) || is_list_one_node(stack))
 		return (0);
-	temp = stack->head->content;
 	next = stack->head->next;
+
+	temp_content = stack->head->content;
+	temp_index = stack->head->index;
+
 	stack->head->content = next->content;
-	next->content = temp;
+	stack->head->index = next->index;
+
+	next->content = temp_content;
+	next->index = temp_index;
 	return (1);
 }
 

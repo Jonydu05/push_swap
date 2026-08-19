@@ -2,19 +2,17 @@
 
 static int	reverse_rotate_stack(t_linkedlist *stack)
 {
-	long	temp;
-	t_node	*node;
+	t_node	*current;
 
 	if (is_list_clean(stack) || is_list_one_node(stack))
 		return (0);
-	node = stack->head;
-	while (node != NULL && node->next!= NULL)
-	{
-		temp = stack->tail->content;
-		stack->tail->content = node->content;
-		node->content = temp;
-		node = node->next;
-	}
+	current = stack->head;
+	while (current->next != stack->tail)
+		current = current->next;
+	current->next = NULL;
+	stack->tail->next = stack->head;
+	stack->head = stack->tail;
+	stack->tail = current;
 	return (1);
 }
 

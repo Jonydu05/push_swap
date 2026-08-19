@@ -2,13 +2,16 @@
 
 static int	push_stack(t_linkedlist *stack_base, t_linkedlist *stack_get)
 {
-	long	temp;
+	t_node	*new_node;
 
 	if (is_list_clean(stack_get))
 		return (0);
-	temp = stack_get->head->content;
+	new_node = push_front(stack_base);
+	if (!new_node)
+		return (0);
+	new_node->content = stack_get->head->content;
+	new_node->index = stack_get->head->index;
 	pop_front(stack_get);
-	add_content(push_front(stack_base), temp);
 	return (1);
 }
 
