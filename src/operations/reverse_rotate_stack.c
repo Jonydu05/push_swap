@@ -18,21 +18,25 @@ static int	reverse_rotate_stack(t_linkedlist *stack)
 	return (1);
 }
 
-int	rra(t_linkedlist *stack_a)
+int	rra(t_linkedlist *stack_a, t_ops *ops)
 {
+	ops->all_ops++;
+	ops->rra++;
 	ft_putstr_fd("rra\n", 1);
 	return (reverse_rotate_stack(stack_a));
 }
 
-int	rrb(t_linkedlist *stack_b)
+int	rrb(t_linkedlist *stack_b, t_ops *ops)
 {
+	ops->all_ops++;
+	ops->rrb++;
 	ft_putstr_fd("rrb\n", 1);
 	return (reverse_rotate_stack(stack_b));
 }
 
-int	rrr(t_linkedlist *stack_a, t_linkedlist *stack_b)
+int	rrr(t_linkedlist *stack_a, t_linkedlist *stack_b, t_ops *ops)
 {
-	if (!rra(stack_a) || !rrb(stack_b))
+	if (!rra(stack_a, ops) || !rrb(stack_b, ops))
 		return (0);
 	return (1);
 }

@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-static void	otimization_three(t_linkedlist *stack_a)
+static void	otimization_three(t_linkedlist *stack_a, t_ops *ops)
 {
 	int	top;
 	int	medium;
@@ -11,54 +11,54 @@ static void	otimization_three(t_linkedlist *stack_a)
 	down = stack_a->tail->content;
 	if (top > medium && medium > down)
 	{
-		sa(stack_a);
-		rra(stack_a);
+		sa(stack_a, ops);
+		rra(stack_a, ops);
 	}
 	else if (top > medium && top > down && medium < down)
-		ra(stack_a);
+		ra(stack_a, ops);
 	else if (top > medium && top < down)
-		sa(stack_a);
+		sa(stack_a, ops);
 	else if (top < medium && top < down && medium > down)
 	{
-		sa(stack_a);
-		ra(stack_a);
+		sa(stack_a, ops);
+		ra(stack_a, ops);
 	}
 	else if (top < medium && top > down)
-		rra(stack_a);
+		rra(stack_a, ops);
 }
 
-static int	choicer_op(t_linkedlist *stack_a)
+static int	choicer_op(t_linkedlist *stack_a, t_ops *ops)
 {
 	if (list_len(stack_a) == 2)
 	{
-		sa(stack_a);
+		sa(stack_a, ops);
 		return (TRUE);
 	}
 	if (list_len(stack_a) == 3)
 	{
-		otimization_three(stack_a);
+		otimization_three(stack_a, ops);
 		return (TRUE);
 	}
 	return (FALSE);
 }
 
-static void	push_all_pa(t_linkedlist *a, t_linkedlist *b, t_node *node)
+static void	push_all(t_linkedlist *a, t_linkedlist *b, t_node *n, t_ops *ops)
 {
-	node = b->head;
-	while (node != NULL)
+	n = b->head;
+	while (n != NULL)
 	{
-		node = node->next;
-		pa(a, b);
+		n = n->next;
+		pa(a, b, ops);
 	}
 }
 
-static void	move_content_to_peek(t_linkedlist *a, long *min_cont)
+static void	move_content_to_peek(t_linkedlist *a, long *min_cont, t_ops *ops)
 {
 	while (a->head->content != get_by_content(a, *min_cont)->content)
-		rra(a);
+		rra(a, ops);
 }
 
-void	selection_sort(t_linkedlist *stack_a, t_linkedlist *stack_b)
+void	selection_sort(t_linkedlist *stack_a, t_linkedlist *stack_b, t_ops *ops)
 {
 	long	min_content;
 	t_node	*node;
@@ -67,7 +67,7 @@ void	selection_sort(t_linkedlist *stack_a, t_linkedlist *stack_b)
 	node = stack_a->head;
 	while (node != NULL)
 	{
-		if (choicer_op(stack_a))
+		if (choicer_op(stack_a, ops))
 			break ;
 		min_content = node->content;
 		j_node = node;
@@ -77,9 +77,9 @@ void	selection_sort(t_linkedlist *stack_a, t_linkedlist *stack_b)
 				min_content = j_node->content;
 			j_node = j_node->next;
 		}
-		move_content_to_peek(stack_a, &min_content);
+		move_content_to_peek(stack_a, &min_content, ops);
 		node = node->next;
-		pb(stack_b, stack_a);
+		pb(stack_b, stack_a, ops);
 	}
-	push_all_pa(stack_a, stack_b, node);
+	push_all(stack_a, stack_b, node, ops);
 }

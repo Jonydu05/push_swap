@@ -14,21 +14,25 @@ static int	swap_stack(t_linkedlist *stack)
 	return (1);
 }
 
-int	sb(t_linkedlist *stack_b)
+int	sb(t_linkedlist *stack_b, t_ops *ops)
 {
+	ops->all_ops++;
+	ops->sb++;
 	ft_putstr_fd("sb\n", 1);
 	return (swap_stack(stack_b));
 }
 
-int	sa(t_linkedlist *stack_a)
+int	sa(t_linkedlist *stack_a, t_ops *ops)
 {
+	ops->all_ops++;
+	ops->sa++;
 	ft_putstr_fd("sa\n", 1);
 	return (swap_stack(stack_a));
 }
 
-int	ss(t_linkedlist *stack_a, t_linkedlist *stack_b)
+int	ss(t_linkedlist *stack_a, t_linkedlist *stack_b, t_ops *ops)
 {
-	if (!sa(stack_a) || !sb(stack_b))
+	if (!sa(stack_a, ops) || !sb(stack_b, ops))
 		return (0);
 	return (1);
 }

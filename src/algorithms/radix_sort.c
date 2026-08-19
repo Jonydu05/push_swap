@@ -66,7 +66,7 @@ static int	get_max_bits(int size)
 	return (max_bits);
 }
 
-void	radix_sort(t_linkedlist *stack_a, t_linkedlist *stack_b)
+void	radix_sort(t_linkedlist *stack_a, t_linkedlist *stack_b, t_ops *ops)
 {
 	int	size;
 	int	max_bits;
@@ -83,13 +83,13 @@ void	radix_sort(t_linkedlist *stack_a, t_linkedlist *stack_b)
 		while (i < size)
 		{
 			if (((stack_a->head->content >> bit) & 1) == 1)
-				ra(stack_a);
+				ra(stack_a, ops);
 			else
-				pb(stack_b, stack_a);
+				pb(stack_b, stack_a, ops);
 			i++;
 		}
 		while (!is_list_clean(stack_b))
-			pa(stack_a, stack_b);
+			pa(stack_a, stack_b, ops);
 		if (is_sorted(stack_a))
 			break ;
 		bit++;

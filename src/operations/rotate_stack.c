@@ -16,21 +16,25 @@ static int rotate_stack(t_linkedlist *stack)
     return (1);
 }
 
-int	ra(t_linkedlist *stack_a)
+int	ra(t_linkedlist *stack_a, t_ops *ops)
 {
+	ops->all_ops++;
+	ops->ra++;
 	ft_putstr_fd("ra\n", 1);
 	return (rotate_stack(stack_a));
 }
 
-int	rb(t_linkedlist *stack_b)
+int	rb(t_linkedlist *stack_b, t_ops *ops)
 {
+	ops->all_ops++;
+	ops->rb++;
 	ft_putstr_fd("rb\n", 1);
 	return (rotate_stack(stack_b));
 }
 
-int	rr(t_linkedlist *stack_a, t_linkedlist *stack_b)
+int	rr(t_linkedlist *stack_a, t_linkedlist *stack_b, t_ops *ops)
 {
-	if (!ra(stack_a) || !rb(stack_b))
+	if (!ra(stack_a, ops) || !rb(stack_b, ops))
 		return (0);
 	return (1);
 }
