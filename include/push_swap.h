@@ -162,12 +162,10 @@ int	is_flag(char *flag);
  */
 unsigned int init_flags(unsigned int FLAG, char *flag, t_conf *conf);
 
-// inputs.c
-
 void	clean_exit(char **numbers, char *inputs);
 int		handle_flags(unsigned int FLAG, t_conf *config);
 char	*cat_inputs(int total, t_conf *config);
-char	**parse_numbers(char *inputs, t_conf *config);
+char	**parse_numbers(int total, char **numbers, char *inputs, t_conf *config);
 void	handle_inputs(t_conf *config);
 
 t_node	*get_by_content(t_linkedlist *list, long content);

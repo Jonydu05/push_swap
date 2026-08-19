@@ -60,33 +60,26 @@ char	*cat_inputs(int total, t_conf *config)
 	return inputs;
 }
 
-char	**parse_numbers(char *inputs, t_conf *config)
+char	**parse_numbers(int total, char **numbers, char *inputs, t_conf *config)
 {
 	int		i;
-	char	**numbers;
 	long	num;
-	t_node	*new_node;
 
-	i = 0;
-	numbers = ft_split(inputs, ' ');
-	while (numbers[i])
-		i++;
-	i--;
+	i = total;
 	while (i >= 0)
 	{
 		num = ft_atol(numbers[i]);
 		if (num < -2147483648 || num > 2147483647)
 		{
 			clean_exit(numbers, inputs);
-			exit_program(2, config);
+			exit_program(1, config);
 		}
 		if (get_by_content(config->stack_a, num) != NULL)
 		{
 			clean_exit(numbers, inputs);	
-			exit_program(2, config);
+			exit_program(1, config);
 		}
-		new_node = push_front(config->stack_a);
-		add_content(new_node, num);
+		add_content(push_front(config->stack_a), num);
 		i--;
 	}
 	return (numbers);
@@ -94,18 +87,23 @@ char	**parse_numbers(char *inputs, t_conf *config)
 
 void	handle_inputs(t_conf *config)
 {
-	unsigned int	ACTIVE_FLAGS = NONE;
+	unsigned int	active_flags = NONE;
 	char			*inputs;
 	int				total;
 	char			**numbers;
 
 	if (config->argc < 2)
 		return (exit_program(1, config));
-	total = handle_flags(ACTIVE_FLAGS, config);
+	total = handle_flags(active_flags, config);
 	inputs = cat_inputs(total, config);
-	if (!(ACTIVE_FLAGS & (SIMPLE | MEDIUM | COMPLEX | ADAPTIVE)))
-        ACTIVE_FLAGS |= ADAPTIVE;
-	numbers = parse_numbers(inputs, config);
+	if (!(active_flags & (SIMPLE | MEDIUM | COMPLEX | ADAPTIVE)))
+        active_flags |= ADAPTIVE;
+	total = 0;
+	numbers = ft_split(inputs, ' ');
+	while (numbers[total])
+		total++;
+	parse_numbers(total - 1, numbers, inputs, config);
 	clean_exit(numbers, inputs);
+	// TO REMOVE:
 	list_print(config->stack_a);
 }
