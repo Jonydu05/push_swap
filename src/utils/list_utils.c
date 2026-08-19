@@ -92,7 +92,7 @@ t_conf	*create_config(int argc, const char **argv)
 	t_conf			*config;
 	t_linkedlist	*stack_a;
 	t_linkedlist	*stack_b;
-	
+
 	stack_a = malloc(sizeof(t_linkedlist));
 	stack_b = malloc(sizeof(t_linkedlist));
 	if (!stack_a || !stack_b)
@@ -109,18 +109,18 @@ t_conf	*create_config(int argc, const char **argv)
 	return (config);
 }
 
-float	compute_disorder(t_conf *config)
-{
-	t_node	*head;
-	t_node	*next;
-	int		mistakes;
-	int		total_pairs;
-
-	head = config->stack_a->head;
-	while (head != NULL)
-	{
-		head->content;
-		next = head->next;
-		head = next;
-	}
-}
+//float	compute_disorder(t_conf *config)
+//{
+//	t_node	*head;
+//	t_node	*next;
+//	int		mistakes;
+//	int		total_pairs;
+//
+//	head = config->stack_a->head;
+//	while (head != NULL)
+//	{
+//		head->content;
+//		next = head->next;
+//		head = next;
+//	}
+//}
