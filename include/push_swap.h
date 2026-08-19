@@ -20,6 +20,22 @@ enum e_flags {
 	BENCH = 1 << 4,
 };
 
+typedef struct s_ops
+{
+	int	all_ops; // to test
+	int	pb;
+	int	pa;
+	int	sa;
+	int	sb;
+	int	ss;
+	int	ra;
+	int	rb;
+	int	rr;
+	int	rra;
+	int	rrb;
+	int	rrr;
+}	t_ops;
+
 typedef struct s_node
 {
 	long			content;
@@ -36,6 +52,7 @@ typedef struct s_config
 {
 	t_linkedlist	*stack_a;
 	t_linkedlist	*stack_b;
+	t_ops			*ops;
 	int				argc;
 	const char		**argv;
 } t_conf;
@@ -175,24 +192,24 @@ void	clear_stack(t_linkedlist *stack);
 
 // Operations to use stack
 
-int	pa(t_linkedlist *stack_a, t_linkedlist *stack_b);
-int	pb(t_linkedlist *stack_b, t_linkedlist *stack_a);
-int	sa(t_linkedlist *stack_a);
-int	sb(t_linkedlist *stack_b);
-int	ss(t_linkedlist *stack_a, t_linkedlist *stack_b);
-int	ra(t_linkedlist *stack_a);
-int	rb(t_linkedlist *stack_a);
-int	rr(t_linkedlist *stack_a, t_linkedlist *stack_b);
-int	rra(t_linkedlist *stack_a);
-int	rrb(t_linkedlist *stack_b);
-int	rrr(t_linkedlist *stack_a, t_linkedlist *stack_b);
+int	pa(t_linkedlist *stack_a, t_linkedlist *stack_b, t_ops *ops);
+int	pb(t_linkedlist *stack_b, t_linkedlist *stack_a, t_ops *ops);
+int	sa(t_linkedlist *stack_a, t_ops *ops);
+int	sb(t_linkedlist *stack_b, t_ops *ops);
+int	ss(t_linkedlist *stack_a, t_linkedlist *stack_b, t_ops *ops);
+int	ra(t_linkedlist *stack_a, t_ops *ops);
+int	rb(t_linkedlist *stack_a, t_ops *ops);
+int	rr(t_linkedlist *stack_a, t_linkedlist *stack_b, t_ops *ops);
+int	rra(t_linkedlist *stack_a, t_ops *ops);
+int	rrb(t_linkedlist *stack_b, t_ops *ops);
+int	rrr(t_linkedlist *stack_a, t_linkedlist *stack_b, t_ops *ops);
 
 // selection_sort
 
-void	selection_sort(t_linkedlist *stack_a, t_linkedlist *stack_b);
+void	selection_sort(t_linkedlist *stack_a, t_linkedlist *stack_b, t_ops *ops);
 
 // radix_sort
 
-void	radix_sort(t_linkedlist *stack_a, t_linkedlist *stack_b);
+void	radix_sort(t_linkedlist *stack_a, t_linkedlist *stack_b, t_ops *ops);
 
 #endif
