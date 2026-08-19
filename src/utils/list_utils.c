@@ -108,3 +108,19 @@ t_conf	*create_config(int argc, const char **argv)
 	config->argv = argv;
 	return (config);
 }
+
+float	compute_disorder(t_conf *config)
+{
+	t_node	*head;
+	t_node	*next;
+	int		mistakes;
+	int		total_pairs;
+
+	head = config->stack_a->head;
+	while (head != NULL)
+	{
+		head->content;
+		next = head->next;
+		head = next;
+	}
+}
