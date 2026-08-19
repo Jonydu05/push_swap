@@ -1,24 +1,19 @@
 #include "push_swap.h"
 
-static int	rotate_stack(t_linkedlist *stack)
+static int rotate_stack(t_linkedlist *stack)
 {
-	long	temp;
-	long	value;
-	t_node	*node;
+    t_node *first;
 
-	if (is_list_clean(stack) || is_list_one_node(stack))
-		return (0);
-	node = stack->head;
-	temp = node->content;
-	while (node != NULL && node->next!= NULL)
-	{
-		value = node->next->content;
-		node->next->content = temp;
-		node->content = value;
-		node = node->next;
-		temp = node->content;
-	}
-	return (1);
+    if (is_list_clean(stack) || is_list_one_node(stack))
+        return (0);
+
+    first = stack->head;
+    stack->head = first->next; // O segundo vira o topo
+    first->next = NULL;
+
+    stack->tail->next = first; // O antigo topo vai para o fim
+    stack->tail = first;       // Atualiza a tail
+    return (1);
 }
 
 int	ra(t_linkedlist *stack_a)

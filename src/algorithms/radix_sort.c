@@ -1,124 +1,97 @@
 #include "push_swap.h"
 #include <stdio.h>
 
-static long	max(t_linkedlist *stack_a)
+static int	is_sorted(t_linkedlist *stack)
 {
-	t_node *node;
+	t_node	*current;
 
-	node = stack_a->head;
-	long max_content = node->content;
-
-	while (node)
+	if (!stack || !stack->head)
+		return (TRUE);
+	current = stack->head;
+	while (current->next)
 	{
-		if (node->content > max_content)
-			max_content = node->content;
-		node = node->next;
+		if (current->content > current->next->content)
+			return (FALSE);
+		current = current->next;
 	}
-	return (max_content);
+	return (TRUE);
 }
 
-static void safe_init(t_node **buckets)
+static void	index_stack(t_linkedlist *stack_a)
 {
-	int	j;
+	t_node	*curr;
+	t_node	*comp;
+	int		*indices;
+	int		size;
+	int		i;
 
-	j = 0;
-	while (j < 10)
+	size = list_len(stack_a);
+	indices = ft_calloc(size, sizeof(int));
+	if (!indices)
+		return ;
+	curr = stack_a->head;
+	i = 0;
+	while (curr)
 	{
-		buckets[j] = node_init();
-		j++;
-	}
-}
-
-static void append(t_node *bucket, long content)
-{
-    t_node *tmp;
-
-    if (!bucket->next && !bucket->content)
-    {
-        bucket->content = content;
-        bucket->next = node_init();
-    }
-    else
-    {
-        tmp = bucket;
-        while (tmp->next)
-            tmp = tmp->next;
-        tmp->content = content;
-        tmp->next = node_init();
-    }
-}
-
-static void inversion_numbers(t_node **buckets, t_node *head)
-{
-	int	j;
-	t_node	*buck;
-
-	j = 0;
-	while (j < 10)
-	{
-		buck = buckets[j];
-		while (buck->next)
+		comp = stack_a->head;
+		while (comp)
 		{
-			head->content = buck->content;
-			buck = buck->next;
-			head = head->next;
+			if (comp->content < curr->content)
+				indices[i]++;
+			comp = comp->next;
 		}
-		j++;
+		curr = curr->next;
+		i++;
 	}
-}
-
-static void safe_clear(t_node **buckets)
-{
-    int     j;
-    t_node  *tmp;
-    t_node  *next;
-
-    j = 0;
-    while (j < 10)
-    {
-        tmp = buckets[j];
-        while (tmp)
-        {
-            next = tmp->next;
-            free(tmp);
-            tmp = next;
-        }
-        j++;
-    }
-    free(buckets);
-}
-
-void	radix_sort(t_linkedlist *stack_a)
-{
-	long max_number;
-	int	exp;
-	long index;
-	t_node *head;
-	t_node **buckets;
-
-	exp = 1;
-	max_number = max(stack_a);
-	while ((int)max_number / exp > 0)
+	curr = stack_a->head;
+	i = 0;
+	while (curr)
 	{
-		buckets = malloc(sizeof(t_node *) * 10);
-
-		safe_init(buckets);
-		head = stack_a->head;
-		while (head)
-		{
-			index = ((long)head->content / exp) % 10;
-			append(buckets[index], head->content);
-			head = head->next;
-		}
-		head = stack_a->head;
-		inversion_numbers(buckets, head);
-		exp *= 10;
-		safe_clear(buckets);
-
-		// printagem
-		printf("\n\n");
-		list_print(stack_a);
+		printf("Value: %ld\n", curr->content); // view
+		curr->content = indices[i];
+		printf("Index: %ld\n", curr->content);
+		curr = curr->next;
+		i++;
 	}
-	//safe_clear(buckets);
+	free(indices);
 }
 
+static int	get_max_bits(int size)
+{
+	int	max_bits;
+
+	max_bits = 0;
+	while ((size - 1) >> max_bits)
+		max_bits++;
+	return (max_bits);
+}
+
+void	radix_sort(t_linkedlist *stack_a, t_linkedlist *stack_b)
+{
+	int	size;
+	int	max_bits;
+	int	bit;
+	int	i;
+
+	index_stack(stack_a);
+	size = list_len(stack_a);
+	max_bits = get_max_bits(size);
+	bit = 0;
+	while (bit < max_bits)
+	{
+		i = 0;
+		while (i < size)
+		{
+			if (((stack_a->head->content >> bit) & 1) == 1)
+				ra(stack_a);
+			else
+				pb(stack_b, stack_a);
+			i++;
+		}
+		while (!is_list_clean(stack_b))
+			pa(stack_a, stack_b);
+		if (is_sorted(stack_a))
+			break ;
+		bit++;
+	}
+}

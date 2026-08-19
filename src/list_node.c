@@ -51,10 +51,11 @@ void	pop_front(t_linkedlist *stack)
 {
 	t_node	*next;
 
-	next = NULL;
-	if (!stack->head) // talvez necessidade de liberar o ultimo ponteiro tail
+	if (!stack || !stack->head)
 		return ;
 	next = stack->head->next;
 	free(stack->head);
 	stack->head = next;
+	if (!stack->head)
+		stack->tail = NULL;
 }

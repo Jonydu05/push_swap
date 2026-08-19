@@ -193,6 +193,6 @@ void	selection_sort(t_linkedlist *stack_a, t_linkedlist *stack_b);
 
 // radix_sort
 
-void	radix_sort(t_linkedlist *stack_a);
+void	radix_sort(t_linkedlist *stack_a, t_linkedlist *stack_b);
 
 #endif
