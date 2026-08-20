@@ -22,7 +22,7 @@ enum e_flags {
 
 typedef struct s_ops
 {
-	int	all_ops; // to test
+	int	all_ops;
 	int	pb;
 	int	pa;
 	int	sa;
@@ -204,6 +204,12 @@ int	rr(t_linkedlist *stack_a, t_linkedlist *stack_b, t_ops *ops);
 int	rra(t_linkedlist *stack_a, t_ops *ops);
 int	rrb(t_linkedlist *stack_b, t_ops *ops);
 int	rrr(t_linkedlist *stack_a, t_linkedlist *stack_b, t_ops *ops);
+
+// Algorithm utils
+
+void	index_stack(t_linkedlist *stack_a);
+int	is_sorted(t_linkedlist *stack);
+int	get_max_bits(int size);
 
 // selection_sort
 
