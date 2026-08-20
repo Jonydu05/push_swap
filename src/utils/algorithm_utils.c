@@ -47,3 +47,36 @@ int	get_max_bits(int size)
 		max_bits++;
 	return (max_bits);
 }
+
+int	get_chunk_size(int n)
+{
+	if (n <= 100)
+		return (15);
+	if (n <= 500)
+		return (35);
+	return (n / 10);
+}
+
+int	get_max_pos(t_linkedlist *stack_b)
+{
+	t_node	*curr;
+	int		max_idx;
+	int		max_pos;
+	int		curr_pos;
+
+	curr = stack_b->head;
+	max_idx = curr->index;
+	max_pos = 0;
+	curr_pos = 0;
+	while (curr)
+	{
+		if (curr->index > max_idx)
+		{
+			max_idx = curr->index;
+			max_pos = curr_pos;
+		}
+		curr = curr->next;
+		curr_pos++;
+	}
+	return (max_pos);
+}
