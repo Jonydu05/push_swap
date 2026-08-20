@@ -207,9 +207,11 @@ int	rrr(t_linkedlist *stack_a, t_linkedlist *stack_b, t_ops *ops);
 
 // Algorithm utils
 
-void	index_stack(t_linkedlist *stack_a);
+void	index_stack(t_linkedlist *stack);
 int	is_sorted(t_linkedlist *stack);
 int	get_max_bits(int size);
+int	get_max_pos(t_linkedlist *stack);
+int	get_chunk_size(int n);
 
 // selection_sort
 
@@ -218,5 +220,9 @@ void	selection_sort(t_linkedlist *stack_a, t_linkedlist *stack_b, t_ops *ops);
 // radix_sort
 
 void	radix_sort(t_linkedlist *stack_a, t_linkedlist *stack_b, t_ops *ops);
+
+// chuck_base
+
+void	chunk_based(t_linkedlist *stack_a, t_linkedlist *stack_b, t_ops *ops);
 
 #endif

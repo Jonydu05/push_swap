@@ -26,6 +26,7 @@ SRCS    := $(SRC)/main.c \
            $(OPS)/reverse_rotate_stack.c \
 		   $(ALGO)/selection_sort.c \
 		   $(ALGO)/radix_sort.c \
+		   $(ALGO)/chunk_based.c \
 		   $(PARSER)/flags.c \
 		   $(PARSER)/inputs.c
 
