@@ -1,14 +1,14 @@
 #include "push_swap.h"
-#include <stdio.h> // temporery
+#include <stdio.h>
 
-void	list_print(t_linkedlist *list) // funcao temporaria
+void	list_print(t_linkedlist *list) // TEMP FUNCTION
 {
 	t_node	*temp;
 
 	temp = list->head;
 	while (temp != NULL)
 	{
-		printf("%ld\n", temp->content); // temporario
+		printf("%ld\n", temp->content);
 		temp = temp->next;
 	}
 }
@@ -16,8 +16,7 @@ void	list_print(t_linkedlist *list) // funcao temporaria
 int	list_len(t_linkedlist *list)
 {
 	t_node	*temp;
-
-	int	size;
+	int		size;
 
 	size = 0;
 	temp = list->head;
@@ -31,10 +30,12 @@ int	list_len(t_linkedlist *list)
 
 int	is_list_clean(t_linkedlist *list)
 {
-	int	size = list_len(list);
+	int	size;
+
+	size = list_len(list);
 	if (size)
-		return (0);
-	return (1);
+		return (FALSE);
+	return (TRUE);
 }
 
 int	is_list_one_node(t_linkedlist *list)
@@ -43,23 +44,8 @@ int	is_list_one_node(t_linkedlist *list)
 
 	next = list->head->next;
 	if (next)
-		return (0);
-	return (1);
-}
-
-t_node	*get_at(t_linkedlist *list, size_t index)
-{
-	t_node	*node;
-	size_t	i;
-
-	node = list->head;
-	i = 0;
-	while (i < index && node != NULL)
-	{
-		node = node->next;
-		i++;
-	}
-	return (node);
+		return (FALSE);
+	return (TRUE);
 }
 
 t_node	*get_by_content(t_linkedlist *list, long content)
@@ -86,61 +72,3 @@ void	clear_stack(t_linkedlist *stack)
 	}
 	free(stack);
 }
-
-void	init_ops(t_ops *ops)
-{
-	ops->all_ops = 0;
-	ops->pa = 0;
-	ops->pb = 0;
-	ops->sa = 0;
-	ops->sb = 0;
-	ops->ss = 0;
-	ops->ra = 0;
-	ops->rb = 0;
-	ops->rr = 0;
-	ops->rra = 0;
-	ops->rrb = 0;
-	ops->rrr = 0;
-}
-
-t_conf	*create_config(int argc, const char **argv)
-{
-	t_conf			*config;
-	t_linkedlist	*stack_a;
-	t_linkedlist	*stack_b;
-	t_ops			*ops;
-
-	stack_a = malloc(sizeof(t_linkedlist));
-	stack_b = malloc(sizeof(t_linkedlist));
-	ops = malloc(sizeof(t_ops));
-	if (!stack_a || !stack_b || !ops)
-		return (NULL);
-	linked_init(stack_a);
-	linked_init(stack_b);
-	init_ops(ops);
-	config = malloc(sizeof(t_conf));
-	if (!config)
-		return (NULL);
-	config->stack_a = stack_a;
-	config->stack_b = stack_b;
-	config->argc = argc;
-	config->argv = argv;
-	config->ops = ops;
-	return (config);
-}
-
-//float	compute_disorder(t_conf *config)
-//{
-//	t_node	*head;
-//	t_node	*next;
-//	int		mistakes;
-//	int		total_pairs;
-//
-//	head = config->stack_a->head;
-//	while (head != NULL)
-//	{
-//		head->content;
-//		next = head->next;
-//		head = next;
-//	}
-//}

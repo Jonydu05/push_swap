@@ -7,9 +7,9 @@ int	is_flag(char *flag)
 	return (FALSE);
 }
 
-unsigned int init_flags(unsigned int FLAG, char *str_flag, t_conf *conf)
+unsigned int	init_flags(unsigned int FLAG, char *str_flag, t_conf *conf)
 {
-	unsigned int algorithm;
+	unsigned int	algorithm;
 
 	if (!ft_strncmp(str_flag, "--simple", 9))
 		FLAG |= SIMPLE;
