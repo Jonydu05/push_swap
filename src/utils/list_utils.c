@@ -57,21 +57,3 @@ t_node	*get_by_content(t_linkedlist *list, long content)
 		node = node->next;
 	return (node);
 }
-<<<<<<< HEAD
-=======
-
-void	clear_stack(t_linkedlist *stack)
-{
-	t_node	*head;
-	t_node	*next;
-
-	head = stack->head;
-	while (head != NULL)
-	{
-		next = head->next;
-		free(head);
-		head = next;
-	}
-	free(stack);
-}
->>>>>>> 266707e2dd38934acf4ccb2503259ab68ce6b19d
