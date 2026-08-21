@@ -18,7 +18,9 @@ int	handle_flags(t_conf *config)
 	{
 		if (is_flag(((char *)config->argv[i])))
 		{
-			config->active_flag = init_flags(config->active_flag, ((char *)config->argv[i]), config);
+			config->active_flag = init_flags(config->active_flag,
+					((char *)config->argv[i]),
+					config);
 			i++;
 			continue ;
 		}

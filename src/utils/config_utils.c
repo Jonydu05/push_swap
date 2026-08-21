@@ -67,7 +67,7 @@ void	clear_config(t_conf *config)
 	free(config);
 }
 
-void exit_program(int exit_code, t_conf *config)
+void	exit_program(int exit_code, t_conf *config)
 {
 	clear_config(config);
 	if (exit_code == 0)

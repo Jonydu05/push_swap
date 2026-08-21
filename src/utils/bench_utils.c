@@ -2,20 +2,20 @@
 
 void	print_disorder(t_conf *config)
 {
-	float   percent;
-    int     int_part;
-    int     decimal_part;
+	float	percent;
+	int		int_part;
+	int		decimal_part;
 
-    percent = config->disorder * 100;
-    int_part = (int)percent;
-    decimal_part = (int)((percent - int_part) * 100);
-    if (decimal_part < 0)
+	percent = config->disorder * 100;
+	int_part = (int)percent;
+	decimal_part = (int)((percent - int_part) * 100);
+	if (decimal_part < 0)
 		decimal_part *= -1;
 	ft_dprintf(2, "[bench] disorder: %d.", int_part);
-    if (decimal_part < 10)
-        ft_putstr_fd("0", 2);
-    ft_putnbr_fd(decimal_part, 2);
-    ft_putstr_fd("%\n", 2);
+	if (decimal_part < 10)
+		ft_putstr_fd("0", 2);
+	ft_putnbr_fd(decimal_part, 2);
+	ft_putstr_fd("%\n", 2);
 }
 
 void	print_strategy(t_conf *config)
@@ -27,7 +27,7 @@ void	print_strategy(t_conf *config)
 		ft_dprintf(2, "Medium / O(n√n)");
 	else if (config->active_flag & COMPLEX)
 		ft_dprintf(2, "Complex / O(n log n)");
-	else 
+	else
 	{
 		ft_dprintf(2, "Adaptive / ");
 		if (config->disorder < 0.2)
@@ -44,11 +44,11 @@ void	print_operations(t_conf *config)
 {
 	ft_dprintf(2, "[bench] total_ops: %d\n", config->ops->all_ops);
 	ft_dprintf(2, "[bench] sa: %d sb: %d ss: %d pa: %d pb: %d\n",
-		   config->ops->sa, config->ops->sb, config->ops->ss,
-		   config->ops->pa, config->ops->pb);
+		config->ops->sa, config->ops->sb, config->ops->ss,
+		config->ops->pa, config->ops->pb);
 	ft_dprintf(2, "[bench] ra: %d rb: %d rr: %d rra: %d rrb: %d rrr: %d\n",
-		   config->ops->ra, config->ops->rb, config->ops->rr,
-		   config->ops->rra, config->ops->rrb, config->ops->rrr);
+		config->ops->ra, config->ops->rb, config->ops->rr,
+		config->ops->rra, config->ops->rrb, config->ops->rrr);
 }
 
 void	handle_benchmark(t_conf *config)

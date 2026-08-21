@@ -2,10 +2,10 @@
 
 float	compute_disorder(t_conf *config)
 {
-	t_node  *current;
-	t_node  *runner;
-	int     mistakes;
-	int     total_pairs;
+	t_node	*current;
+	t_node	*runner;
+	int		mistakes;
+	int		total_pairs;
 
 	if (!config || !config->stack_a || !config->stack_a->head
 		|| !config->stack_a->head->next)
@@ -19,7 +19,7 @@ float	compute_disorder(t_conf *config)
 		while (runner != NULL)
 		{
 			if (current->content > runner->content)
-				mistakes++;       
+				mistakes++;
 			total_pairs++;
 			runner = runner->next;
 		}
@@ -41,7 +41,7 @@ void	handle_sort_algo(t_conf *config)
 		radix_sort(config->stack_a, config->stack_b, config->ops);
 	else if (config->active_flag & ADAPTIVE)
 	{
-		if(config->disorder < 0.2)
+		if (config->disorder < 0.2)
 			selection_sort(config->stack_a, config->stack_b, config->ops);
 		else if (config->disorder >= 0.2 && config->disorder < 0.5)
 			chunk_based(config->stack_a, config->stack_b, config->ops);

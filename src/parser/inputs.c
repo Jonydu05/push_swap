@@ -48,7 +48,7 @@ int	is_valid_number(char *str)
 		return (FALSE);
 	while (str[i])
 	{
-		if (!ft_isdigit(str[i])) 
+		if (!ft_isdigit(str[i]))
 			return (FALSE);
 		i++;
 	}
@@ -63,11 +63,11 @@ void	parse_numbers(int total, char **numbers, char *inputs, t_conf *config)
 	i = total;
 	while (i >= 0)
 	{
-		if (!is_valid_number(numbers[i])) 
-        {
-            clean_exit(numbers, inputs);
-            exit_program(1, config);
-        }
+		if (!is_valid_number(numbers[i]))
+		{
+			clean_exit(numbers, inputs);
+			exit_program(1, config);
+		}
 		num = ft_atol(numbers[i]);
 		if (num < -2147483648 || num > 2147483647)
 		{
