@@ -1,14 +1,14 @@
 #include "push_swap.h"
-#include <stdio.h> // temporery
+#include <stdio.h>
 
-void	list_print(t_linkedlist *list) // funcao temporaria
+void	list_print(t_linkedlist *list) // TEMP FUNCTION
 {
 	t_node	*temp;
 
 	temp = list->head;
 	while (temp != NULL)
 	{
-		printf("%ld\n", temp->content); // temporario
+		printf("%ld\n", temp->content);
 		temp = temp->next;
 	}
 }
@@ -16,8 +16,7 @@ void	list_print(t_linkedlist *list) // funcao temporaria
 int	list_len(t_linkedlist *list)
 {
 	t_node	*temp;
-
-	int	size;
+	int		size;
 
 	size = 0;
 	temp = list->head;
@@ -31,10 +30,12 @@ int	list_len(t_linkedlist *list)
 
 int	is_list_clean(t_linkedlist *list)
 {
-	int	size = list_len(list);
+	int	size;
+
+	size = list_len(list);
 	if (size)
-		return (0);
-	return (1);
+		return (FALSE);
+	return (TRUE);
 }
 
 int	is_list_one_node(t_linkedlist *list)
@@ -43,23 +44,8 @@ int	is_list_one_node(t_linkedlist *list)
 
 	next = list->head->next;
 	if (next)
-		return (0);
-	return (1);
-}
-
-t_node	*get_at(t_linkedlist *list, size_t index)
-{
-	t_node	*node;
-	size_t	i;
-
-	node = list->head;
-	i = 0;
-	while (i < index && node != NULL)
-	{
-		node = node->next;
-		i++;
-	}
-	return (node);
+		return (FALSE);
+	return (TRUE);
 }
 
 t_node	*get_by_content(t_linkedlist *list, long content)
@@ -71,3 +57,21 @@ t_node	*get_by_content(t_linkedlist *list, long content)
 		node = node->next;
 	return (node);
 }
+<<<<<<< HEAD
+=======
+
+void	clear_stack(t_linkedlist *stack)
+{
+	t_node	*head;
+	t_node	*next;
+
+	head = stack->head;
+	while (head != NULL)
+	{
+		next = head->next;
+		free(head);
+		head = next;
+	}
+	free(stack);
+}
+>>>>>>> 266707e2dd38934acf4ccb2503259ab68ce6b19d

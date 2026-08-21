@@ -19,7 +19,6 @@ SRCS    := $(SRC)/main.c \
            $(SRC)/list_node.c \
            $(UTILS)/list_utils.c \
            $(UTILS)/algorithm_utils.c \
-           $(UTILS)/clean_program.c \
 		   $(UTILS)/config_utils.c \
            $(OPS)/swap_stack.c \
            $(OPS)/push_stack.c \

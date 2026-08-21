@@ -7,18 +7,15 @@ static int	swap_stack(t_linkedlist *stack)
 	t_node	*next;
 
 	if (is_list_clean(stack) || is_list_one_node(stack))
-		return (0);
+		return (FALSE);
 	next = stack->head->next;
-
 	temp_content = stack->head->content;
 	temp_index = stack->head->index;
-
 	stack->head->content = next->content;
 	stack->head->index = next->index;
-
 	next->content = temp_content;
 	next->index = temp_index;
-	return (1);
+	return (TRUE);
 }
 
 int	sb(t_linkedlist *stack_b, t_ops *ops)

@@ -21,13 +21,8 @@ void	linked_init(t_linkedlist *list)
 
 int	add_content(t_node	*node, long content)
 {
-	long max_int = 2147483647;
-	long min_int = -2147483648;
-
-	if (content > max_int || content < min_int)
-		return (-1);
 	node->content = content;
-	return (1);
+	return (TRUE);
 }
 
 t_node	*push_front(t_linkedlist *stack)

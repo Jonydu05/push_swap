@@ -5,14 +5,14 @@ static int	push_stack(t_linkedlist *stack_base, t_linkedlist *stack_get)
 	t_node	*new_node;
 
 	if (is_list_clean(stack_get))
-		return (0);
+		return (FALSE);
 	new_node = push_front(stack_base);
 	if (!new_node)
-		return (0);
+		return (FALSE);
 	new_node->content = stack_get->head->content;
 	new_node->index = stack_get->head->index;
 	pop_front(stack_get);
-	return (1);
+	return (TRUE);
 }
 
 int	pa(t_linkedlist *stack_a, t_linkedlist *stack_b, t_ops *ops)
