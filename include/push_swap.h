@@ -56,6 +56,8 @@ typedef struct s_config
 	t_ops			*ops;
 	int				argc;
 	const char		**argv;
+	float			disorder;
+	unsigned int	active_flag;
 } t_conf;
 
 t_conf	*create_config(int argc, const char **argv);
@@ -181,7 +183,7 @@ int	is_flag(char *flag);
 unsigned int init_flags(unsigned int FLAG, char *flag, t_conf *conf);
 
 void	clean_exit(char **numbers, char *inputs);
-int		handle_flags(unsigned int FLAG, t_conf *config);
+int		handle_flags(t_conf *config);
 char	*cat_inputs(int total, t_conf *config);
 char	**parse_numbers(int total, char **numbers, char *inputs, t_conf *config);
 void	handle_inputs(t_conf *config);
@@ -189,7 +191,7 @@ void	handle_inputs(t_conf *config);
 t_node	*get_by_content(t_linkedlist *list, long content);
 t_node	*get_at(t_linkedlist *list, size_t index);
 
-void	clear_stack(t_linkedlist *stack);
+void	clear_list(t_linkedlist *stack);
 
 // Operations to use stack
 

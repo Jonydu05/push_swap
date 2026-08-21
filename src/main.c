@@ -1,6 +1,71 @@
 #include "push_swap.h"
 #include <stdio.h>
 
+float	compute_disorder(t_conf *config)
+{
+    t_node  *current;
+    t_node  *runner;
+    int     mistakes;
+    int     total_pairs;
+
+    if (!config || !config->stack_a || !config->stack_a->head || !config->stack_a->head->next)
+        return (0.0);
+    mistakes = 0;
+    total_pairs = 0;
+    current = config->stack_a->head;
+    while (current != NULL)
+    {
+        runner = current->next;
+        while (runner != NULL)
+        {
+            if (current->content > runner->content)
+                mistakes++;       
+            total_pairs++;
+            runner = runner->next;
+        }
+        current = current->next;
+    }
+    return ((float)mistakes / (float)total_pairs);
+}
+
+void	handle_sort_algo(t_conf *config)
+{
+	config->disorder = compute_disorder(config);
+	if (config->active_flag & SIMPLE)
+		selection_sort(config->stack_a, config->stack_b, config->ops);
+	else if (config->active_flag & MEDIUM)
+		chunk_based(config->stack_a, config->stack_b, config->ops);
+	else if (config->active_flag & COMPLEX)
+		radix_sort(config->stack_a, config->stack_b, config->ops);
+	else if (config->active_flag & ADAPTIVE)
+	{
+		if(config->disorder < 0.2)
+			selection_sort(config->stack_a, config->stack_b, config->ops);
+		else if (config->disorder >= 0.2 && config->disorder < 0.5)
+			chunk_based(config->stack_a, config->stack_b, config->ops);
+		else
+			radix_sort(config->stack_a, config->stack_b, config->ops);
+	}
+	return ;
+}
+
+void	handle_benchmark(t_conf *config)
+{
+	if (config->active_flag)
+	printf("[bench] disorder: %.2f%%\n", config->disorder * 100);
+
+	// if ()
+	// printf("[bench] strategy: ");
+
+	printf("[bench] total_ops: %d\n", config->ops->all_ops);
+	printf("[bench] sa: %d sb: %d ss: %d pa: %d pb: %d\n",
+		config->ops->sa, config->ops->sb, config->ops->ss, 
+		config->ops->pa, config->ops->pb);
+	printf("[bench] ra: %d rb: %d rr: %d rra: %d rrb: %d rrr: %d\n",
+		config->ops->ra, config->ops->rb, config->ops->rr, 
+		config->ops->rra, config->ops->rrb, config->ops->rrr);
+}
+
 int	main(int argc, char const *argv[])
 {
 	t_conf	*config;
@@ -9,10 +74,9 @@ int	main(int argc, char const *argv[])
 	if (!config)
 		return (1);
 	handle_inputs(config);
-
-	// Executa o algoritmo Radix Sort
-	radix_sort(config->stack_a, config->stack_b);
-	list_print(config->stack_a);
+	handle_sort_algo(config);
+	if (config->active_flag & BENCH)
+		handle_benchmark(config);
 	exit_program(0, config);
 	return (0);
 }

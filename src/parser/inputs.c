@@ -14,7 +14,7 @@ void	clean_exit(char **numbers, char *inputs)
 	free(inputs);
 }
 
-int	handle_flags(unsigned int FLAG, t_conf *config)
+int	handle_flags(t_conf *config)
 {
 	int		i;
 	int 	total;
@@ -25,7 +25,7 @@ int	handle_flags(unsigned int FLAG, t_conf *config)
 	{
 		if (is_flag(((char *)config->argv[i])))
 		{
-			FLAG = init_flags(FLAG, ((char *)config->argv[i]), config);
+			config->active_flag = init_flags(config->active_flag, ((char *)config->argv[i]), config);
 			i++;
 			continue ;
 		}
@@ -87,23 +87,20 @@ char	**parse_numbers(int total, char **numbers, char *inputs, t_conf *config)
 
 void	handle_inputs(t_conf *config)
 {
-	unsigned int	active_flags = NONE;
 	char			*inputs;
 	int				total;
 	char			**numbers;
 
 	if (config->argc < 2)
 		return (exit_program(1, config));
-	total = handle_flags(active_flags, config);
+	total = handle_flags(config);
 	inputs = cat_inputs(total, config);
-	if (!(active_flags & (SIMPLE | MEDIUM | COMPLEX | ADAPTIVE)))
-        active_flags |= ADAPTIVE;
+	if (!(config->active_flag & (SIMPLE | MEDIUM | COMPLEX | ADAPTIVE)))
+        config->active_flag |= ADAPTIVE;
 	total = 0;
 	numbers = ft_split(inputs, ' ');
 	while (numbers[total])
 		total++;
 	parse_numbers(total - 1, numbers, inputs, config);
 	clean_exit(numbers, inputs);
-	// TO REMOVE:
-	list_print(config->stack_a);
 }
