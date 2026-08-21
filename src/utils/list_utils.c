@@ -1,17 +1,4 @@
 #include "push_swap.h"
-#include <stdio.h>
-
-void	list_print(t_linkedlist *list) // TEMP FUNCTION
-{
-	t_node	*temp;
-
-	temp = list->head;
-	while (temp != NULL)
-	{
-		printf("%ld\n", temp->content);
-		temp = temp->next;
-	}
-}
 
 int	list_len(t_linkedlist *list)
 {

@@ -7,6 +7,28 @@ int	is_flag(char *flag)
 	return (FALSE);
 }
 
+int	handle_flags(t_conf *config)
+{
+	int		i;
+	int		total;
+
+	i = 1;
+	total = 0;
+	while (i < config->argc)
+	{
+		if (is_flag(((char *)config->argv[i])))
+		{
+			config->active_flag = init_flags(config->active_flag, ((char *)config->argv[i]), config);
+			i++;
+			continue ;
+		}
+		total += ft_strlen(config->argv[i]);
+		i++;
+	}
+	total += config->argc - 2 + 1;
+	return (total);
+}
+
 unsigned int	init_flags(unsigned int FLAG, char *str_flag, t_conf *conf)
 {
 	unsigned int	algorithm;

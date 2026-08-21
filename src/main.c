@@ -1,5 +1,4 @@
 #include "push_swap.h"
-#include <stdio.h>
 
 float	compute_disorder(t_conf *config)
 {
@@ -31,6 +30,8 @@ float	compute_disorder(t_conf *config)
 void	handle_sort_algo(t_conf *config)
 {
 	config->disorder = compute_disorder(config);
+	if (config->disorder <= 0)
+		return ;
 	if (config->active_flag & SIMPLE)
 		selection_sort(config->stack_a, config->stack_b, config->ops);
 	else if (config->active_flag & MEDIUM)
@@ -47,23 +48,6 @@ void	handle_sort_algo(t_conf *config)
 			radix_sort(config->stack_a, config->stack_b, config->ops);
 	}
 	return ;
-}
-
-void	handle_benchmark(t_conf *config)
-{
-	if (config->active_flag)
-	printf("[bench] disorder: %.2f%%\n", config->disorder * 100);
-
-	// if ()
-	// printf("[bench] strategy: ");
-
-	printf("[bench] total_ops: %d\n", config->ops->all_ops);
-	printf("[bench] sa: %d sb: %d ss: %d pa: %d pb: %d\n",
-		config->ops->sa, config->ops->sb, config->ops->ss, 
-		config->ops->pa, config->ops->pb);
-	printf("[bench] ra: %d rb: %d rr: %d rra: %d rrb: %d rrr: %d\n",
-		config->ops->ra, config->ops->rb, config->ops->rr, 
-		config->ops->rra, config->ops->rrb, config->ops->rrr);
 }
 
 int	main(int argc, char const *argv[])

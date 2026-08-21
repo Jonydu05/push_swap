@@ -14,28 +14,6 @@ void	clean_exit(char **numbers, char *inputs)
 	free(inputs);
 }
 
-int	handle_flags(t_conf *config)
-{
-	int		i;
-	int		total;
-
-	i = 1;
-	total = 0;
-	while (i < config->argc)
-	{
-		if (is_flag(((char *)config->argv[i])))
-		{
-			config->active_flag = init_flags(config->active_flag, ((char *)config->argv[i]), config);
-			i++;
-			continue ;
-		}
-		total += ft_strlen(config->argv[i]);
-		i++;
-	}
-	total += config->argc - 2 + 1;
-	return (total);
-}
-
 char	*cat_inputs(int total, t_conf *config)
 {
 	char	*inputs;
@@ -59,7 +37,25 @@ char	*cat_inputs(int total, t_conf *config)
 	return (inputs);
 }
 
-char	**parse_numbers(int total, char **numbers, char *inputs, t_conf *config)
+int is_valid_number(char *str)
+{
+	int	i;
+
+	i = 0;
+	if (str[i] == '-' || str[i] == '+')
+		i++;
+	if (str[i] == '\0')
+		return (FALSE);
+	while (str[i])
+	{
+		if (!ft_isdigit(str[i])) 
+			return (FALSE);
+		i++;
+	}
+	return (TRUE);
+}
+
+void	parse_numbers(int total, char **numbers, char *inputs, t_conf *config)
 {
 	int		i;
 	long	num;
@@ -67,6 +63,11 @@ char	**parse_numbers(int total, char **numbers, char *inputs, t_conf *config)
 	i = total;
 	while (i >= 0)
 	{
+		if (!is_valid_number(numbers[i])) 
+        {
+            clean_exit(numbers, inputs);
+            exit_program(1, config);
+        }
 		num = ft_atol(numbers[i]);
 		if (num < -2147483648 || num > 2147483647)
 		{
@@ -81,7 +82,6 @@ char	**parse_numbers(int total, char **numbers, char *inputs, t_conf *config)
 		add_content(push_front(config->stack_a), num);
 		i--;
 	}
-	return (numbers);
 }
 
 void	handle_inputs(t_conf *config)
@@ -96,7 +96,7 @@ void	handle_inputs(t_conf *config)
 	total = handle_flags(config);
 	inputs = cat_inputs(total, config);
 	if (!(config->active_flag & (SIMPLE | MEDIUM | COMPLEX | ADAPTIVE)))
-        config->active_flag |= ADAPTIVE;
+		config->active_flag |= ADAPTIVE;
 	total = 0;
 	numbers = ft_split(inputs, ' ');
 	while (numbers[total])

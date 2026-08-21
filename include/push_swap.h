@@ -16,6 +16,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include "../libft/libft.h"
+# include "../ft_dprintf/src/ft_dprintf.h"
 
 # ifndef TRUE
 #  define TRUE 1
@@ -75,6 +76,12 @@ typedef struct s_config
 	unsigned int		active_flag;
 }						t_conf;
 
+/* Benchmark */
+void					print_disorder(t_conf *config);
+void					print_strategy(t_conf *config);
+void					print_operations(t_conf *config);
+void					handle_benchmark(t_conf *config);
+
 /* Configuration */
 t_conf					*create_config(int argc, const char **argv);
 
@@ -86,7 +93,6 @@ void					pop_front(t_linkedlist *stack);
 int						add_content(t_node *node, long content);
 
 /* List Utils */
-void					list_print(t_linkedlist *list);
 int						list_len(t_linkedlist *list);
 int						is_list_clean(t_linkedlist *list);
 int						is_list_one_node(t_linkedlist *list);
@@ -99,7 +105,7 @@ unsigned int			init_flags(unsigned int flag_val, char *flag,
 void					clean_exit(char **numbers, char *inputs);
 int						handle_flags(t_conf *config);
 char					*cat_inputs(int total, t_conf *config);
-char					**parse_numbers(int total, char **numbers, char *inputs,
+void					parse_numbers(int total, char **numbers, char *inputs,
 							t_conf *config);
 void					handle_inputs(t_conf *config);
 t_node					*get_by_content(t_linkedlist *list, long content);
