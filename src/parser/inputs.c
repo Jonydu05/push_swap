@@ -37,7 +37,7 @@ char	*cat_inputs(int total, t_conf *config)
 	return (inputs);
 }
 
-int is_valid_number(char *str)
+int	is_valid_number(char *str)
 {
 	int	i;
 

@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-void print_disorder(t_conf *config)
+void	print_disorder(t_conf *config)
 {
 	float   percent;
     int     int_part;
@@ -18,7 +18,7 @@ void print_disorder(t_conf *config)
     ft_putstr_fd("%\n", 2);
 }
 
-void print_strategy(t_conf *config)
+void	print_strategy(t_conf *config)
 {
 	ft_dprintf(2, "[bench] strategy: ");
 	if (config->active_flag & SIMPLE)
@@ -40,7 +40,7 @@ void print_strategy(t_conf *config)
 	ft_dprintf(2, "\n");
 }
 
-void print_operations(t_conf *config)
+void	print_operations(t_conf *config)
 {
 	ft_dprintf(2, "[bench] total_ops: %d\n", config->ops->all_ops);
 	ft_dprintf(2, "[bench] sa: %d sb: %d ss: %d pa: %d pb: %d\n",
@@ -51,7 +51,7 @@ void print_operations(t_conf *config)
 		   config->ops->rra, config->ops->rrb, config->ops->rrr);
 }
 
-void handle_benchmark(t_conf *config)
+void	handle_benchmark(t_conf *config)
 {
 	print_disorder(config);
 	print_strategy(config);

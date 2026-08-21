@@ -2,29 +2,30 @@
 
 float	compute_disorder(t_conf *config)
 {
-    t_node  *current;
-    t_node  *runner;
-    int     mistakes;
-    int     total_pairs;
+	t_node  *current;
+	t_node  *runner;
+	int     mistakes;
+	int     total_pairs;
 
-    if (!config || !config->stack_a || !config->stack_a->head || !config->stack_a->head->next)
-        return (0.0);
-    mistakes = 0;
-    total_pairs = 0;
-    current = config->stack_a->head;
-    while (current != NULL)
-    {
-        runner = current->next;
-        while (runner != NULL)
-        {
-            if (current->content > runner->content)
-                mistakes++;       
-            total_pairs++;
-            runner = runner->next;
-        }
-        current = current->next;
-    }
-    return ((float)mistakes / (float)total_pairs);
+	if (!config || !config->stack_a || !config->stack_a->head
+		|| !config->stack_a->head->next)
+		return (0.0);
+	mistakes = 0;
+	total_pairs = 0;
+	current = config->stack_a->head;
+	while (current != NULL)
+	{
+		runner = current->next;
+		while (runner != NULL)
+		{
+			if (current->content > runner->content)
+				mistakes++;       
+			total_pairs++;
+			runner = runner->next;
+		}
+		current = current->next;
+	}
+	return ((float)mistakes / (float)total_pairs);
 }
 
 void	handle_sort_algo(t_conf *config)

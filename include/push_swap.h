@@ -84,6 +84,9 @@ void					handle_benchmark(t_conf *config);
 
 /* Configuration */
 t_conf					*create_config(int argc, const char **argv);
+void					init_ops(t_ops *ops);
+void					clear_config(t_conf *config);
+float					compute_disorder(t_conf *config);
 
 /* List Node */
 void					linked_init(t_linkedlist *list);
@@ -110,6 +113,7 @@ void					parse_numbers(int total, char **numbers, char *inputs,
 void					handle_inputs(t_conf *config);
 t_node					*get_by_content(t_linkedlist *list, long content);
 void					clear_list(t_linkedlist *stack);
+int						is_valid_number(char *str);
 
 /* Stack Operations */
 int						pa(t_linkedlist *stack_a, t_linkedlist *stack_b,
@@ -135,6 +139,7 @@ int						is_sorted(t_linkedlist *stack);
 int						get_max_bits(int size);
 int						get_max_pos(t_linkedlist *stack);
 int						get_chunk_size(int n);
+void					handle_sort_algo(t_conf *config);
 
 /* Algorithms */
 void					selection_sort(t_linkedlist *stack_a,
