@@ -28,6 +28,31 @@ float	compute_disorder(t_conf *config)
 	return ((float)mistakes / (float)total_pairs);
 }
 
+void	handle_adaptive(t_conf *config)
+{
+	int	len;
+
+	len = list_len(config->stack_a);
+	if (len <= 5)
+		selection_sort(config->stack_a, config->stack_b, config->ops);
+	else if (len <= 100)
+	{
+		if (config->disorder < 0.1)
+			selection_sort(config->stack_a, config->stack_b, config->ops);
+		else
+			chunk_based(config->stack_a, config->stack_b, config->ops);
+	}
+	else
+	{
+		if (config->disorder < 0.1)
+			selection_sort(config->stack_a, config->stack_b, config->ops);
+		else if (config->disorder < 0.4)
+			chunk_based(config->stack_a, config->stack_b, config->ops);
+		else
+			radix_sort(config->stack_a, config->stack_b, config->ops);
+	}
+}
+
 void	handle_sort_algo(t_conf *config)
 {
 	config->disorder = compute_disorder(config);
@@ -40,15 +65,7 @@ void	handle_sort_algo(t_conf *config)
 	else if (config->active_flag & COMPLEX)
 		radix_sort(config->stack_a, config->stack_b, config->ops);
 	else if (config->active_flag & ADAPTIVE)
-	{
-		if (config->disorder < 0.2)
-			selection_sort(config->stack_a, config->stack_b, config->ops);
-		else if (config->disorder >= 0.2 && config->disorder < 0.5)
-			chunk_based(config->stack_a, config->stack_b, config->ops);
-		else
-			radix_sort(config->stack_a, config->stack_b, config->ops);
-	}
-	return ;
+		handle_adaptive(config);
 }
 
 int	main(int argc, char const *argv[])

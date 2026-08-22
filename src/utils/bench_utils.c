@@ -18,6 +18,32 @@ void	print_disorder(t_conf *config)
 	ft_putstr_fd("%\n", 2);
 }
 
+void	print_adaptive_strategy(t_conf *config)
+{
+	int	len;
+
+	ft_dprintf(2, "Adaptive / ");
+	len = list_len(config->stack_a);
+	if (len <= 5)
+		ft_dprintf(2, "O(n2)");
+	else if (len <= 100)
+	{
+		if (config->disorder < 0.1)
+			ft_dprintf(2, "O(n2)");
+		else
+			ft_dprintf(2, "O(n√n)");
+	}
+	else
+	{
+		if (config->disorder < 0.1)
+			ft_dprintf(2, "O(n2)");
+		else if (config->disorder < 0.4)
+			ft_dprintf(2, "O(n√n)");
+		else
+			ft_dprintf(2, "O(n log n)");
+	}
+}
+
 void	print_strategy(t_conf *config)
 {
 	ft_dprintf(2, "[bench] strategy: ");
@@ -28,15 +54,7 @@ void	print_strategy(t_conf *config)
 	else if (config->active_flag & COMPLEX)
 		ft_dprintf(2, "Complex / O(n log n)");
 	else
-	{
-		ft_dprintf(2, "Adaptive / ");
-		if (config->disorder < 0.2)
-			ft_dprintf(2, "O(n2)");
-		else if (config->disorder >= 0.2 && config->disorder < 0.5)
-			ft_dprintf(2, "O(n√n)");
-		else
-			ft_dprintf(2, "O(n log n)");
-	}
+		print_adaptive_strategy(config);
 	ft_dprintf(2, "\n");
 }
 
